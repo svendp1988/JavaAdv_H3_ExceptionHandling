@@ -14,8 +14,12 @@ public class PasswordUtil {
 		try {
 			messageDigest = MessageDigest.getInstance(ALGORITHM);
 		} catch (NoSuchAlgorithmException e) {
-			// this is not ok!
-			return null;
+			// this is ok!
+//			e.printStackTrace();
+//			// this is not ok!
+//			return null;
+			// better option:
+			 throw new IllegalArgumentException(e);
 		}
 		messageDigest.update(password.getBytes(), 0, password.length());
 		return new BigInteger(1, messageDigest.digest()).toString(16);
